@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.grupo_01;
+package espol.grupo_01;
 
 /**
  *
- * @author dval0
+ * @author Grupo 01
  */
 public class Main {
 
     public static void main(String[] args) {
-        
+        System.out.println("proyecto"); 
     }
 }
