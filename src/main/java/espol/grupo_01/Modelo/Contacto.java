@@ -11,8 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
+
 import javafx.scene.image.Image;
 /**
  *
@@ -22,12 +21,12 @@ public class Contacto implements Serializable {
     private String nombre;
     private String apellido;
     private String tipoDeContacto;
-    private ArrayList<String> direcciones;
-    private ArrayList<String> emails;
-    private ArrayList<String> numTelefonicos;
-    private ArrayList<String> identRedesSociales;
-    private LinkedList<Image> fotos;
-    private ArrayList<String> fechasInteres;
+    private LinkedListDobleCircular<String> direcciones;
+    private LinkedListDobleCircular<String> emails;
+    private LinkedListDobleCircular<String> numTelefonicos;
+    private LinkedListDobleCircular<String> identRedesSociales;
+    private LinkedListDobleCircular<Image> fotos;
+    private LinkedListDobleCircular<String> fechasInteres;
 
     
     //Getters de los atibutos
@@ -43,27 +42,27 @@ public class Contacto implements Serializable {
         return tipoDeContacto;
     }
 
-    public ArrayList<String> getDirecciones() {
+    public LinkedListDobleCircular<String> getDirecciones() {
         return direcciones;
     }
 
-    public ArrayList<String> getEmails() {
+    public LinkedListDobleCircular<String> getEmails() {
         return emails;
     }
 
-    public ArrayList<String> getNumTelefonicos() {
+    public LinkedListDobleCircular<String> getNumTelefonicos() {
         return numTelefonicos;
     }
 
-    public ArrayList<String> getIdentRedesSociales() {
+    public LinkedListDobleCircular<String> getIdentRedesSociales() {
         return identRedesSociales;
     }
 
-    public LinkedList<Image> getFotos() {
+    public LinkedListDobleCircular<Image> getFotos() {
         return fotos;
     }
 
-    public ArrayList<String> getFechasInteres() {
+    public LinkedListDobleCircular<String> getFechasInteres() {
         return fechasInteres;
     }
     
@@ -81,7 +80,7 @@ public class Contacto implements Serializable {
         this.tipoDeContacto = tipoDeContacto;
     }
 
-    public void setDirecciones(ArrayList<String> direcciones) {
+    public void setDirecciones(LinkedListDobleCircular<String> direcciones) {
         this.direcciones = direcciones;
     }
     
@@ -127,17 +126,17 @@ public class Contacto implements Serializable {
     
     
     //Metodo que guarda la lista de contactos en archivo ser, serializandolo y atrapa posibles errores con el try y catch
-    public static void saveListToFileSerContactos(LinkedList<Contacto> contactos) {
+    public static void saveListToFileSerContactos(LinkedListDobleCircular<Contacto> contactos) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Contactos.ser"))) {
             oos.writeObject(contactos);
         } catch (Exception e) {}
     }
     
     //Metodo que recupera la lista de contactos desde el archivo ser, lo deserializa y lo devuelve a arraylist
-    public static LinkedList<Contacto> readListFromFileSerContactos() {
-        LinkedList<Contacto> contactos = new LinkedList<>();
+    public static LinkedListDobleCircular<Contacto> readListFromFileSerContactos() {
+        LinkedListDobleCircular<Contacto> contactos = new LinkedListDobleCircular<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Contactos.ser"))) {
-            contactos = (LinkedList<Contacto>) ois.readObject();
+            contactos = (LinkedListDobleCircular<Contacto>) ois.readObject();
         } catch (IOException e) {
         } catch (ClassNotFoundException e) {
         } catch (Exception a) {

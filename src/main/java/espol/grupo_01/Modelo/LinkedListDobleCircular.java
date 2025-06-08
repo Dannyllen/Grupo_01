@@ -148,6 +148,38 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         return eliminado;
     }
     
+    /*Elimina la primera ocurrencia del objeto dado y 
+    Ajusta los enlaces para mantener la estructura circular y devuelve true si se eliminó.
+    */
+    public boolean remove(Object o) {
+        if (isEmpty()) {
+            return false;
+        }
+
+        Node<E> actual = primero;
+        for (int i = 0; i < n; i++) {
+            if ((actual.contenido == null && o == null) || (actual.contenido != null && actual.contenido.equals(o))) {
+                if (n == 1) {
+                    primero = null;
+                    ultimo = null;
+                } else {
+                    actual.anterior.siguiente = actual.siguiente;
+                    actual.siguiente.anterior = actual.anterior;
+                    if (actual == primero) {
+                        primero = actual.siguiente;
+                    }
+                    if (actual == ultimo) {
+                        ultimo = actual.anterior;
+                    }
+                }
+                n--;
+                return true;
+            }
+            actual = actual.siguiente;
+        }
+        return false;
+    }
+
     
     //Metodo que agrega contenido, recibendo una lista de tipo observableList de JavaFX
     public void iteracionCircular(ObservableList<String> observableList) {

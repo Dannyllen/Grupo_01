@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Objects;
+
+
 
 /**
  *
@@ -23,7 +23,7 @@ public class Usuario implements Serializable {
     private String nomUsuario;
     private String contraseña;
     private String tipoDeUsuario;
-    private LinkedList<Contacto> contactos;
+    private LinkedListDobleCircular<Contacto> contactos;
     
     
     //Constructor de la clase
@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
         this.nomUsuario = nombreUsuario;
         this.contraseña = contraseña;
         this.tipoDeUsuario = tipoUsuario;
-        this.contactos = new LinkedList<>();
+        this.contactos = new LinkedListDobleCircular<>();
     }
     
     
@@ -48,7 +48,7 @@ public class Usuario implements Serializable {
         return tipoDeUsuario;
     }
 
-    public LinkedList<Contacto> getContactos() {
+    public LinkedListDobleCircular<Contacto> getContactos() {
         return contactos;
     }
     
@@ -66,42 +66,41 @@ public class Usuario implements Serializable {
         this.tipoDeUsuario = tipoDeUsuario;
     }
 
-    public void setContactos(LinkedList<Contacto> contactos) {
+    public void setContactos(LinkedListDobleCircular<Contacto> contactos) {
         this.contactos = contactos;
     }
 
     
     //Metodo que serializa una arraylist de tipo usuario en un archivo ser
-    public static void saveListToFileSerUsuarios(ArrayList<Usuario> usuarios) {
+    public static void saveListToFileSerUsuarios(LinkedListDobleCircular<Usuario> usuarios) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Usuarios.ser"))) {
             oos.writeObject(usuarios);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
     
     //Metodo que deserializa el archivo ser 
-    public static ArrayList<Usuario> readListFromFileSerUsuarios() {
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+    public static LinkedListDobleCircular<Usuario> readListFromFileSerUsuarios() {
+        LinkedListDobleCircular<Usuario> usuarios = new LinkedListDobleCircular<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Usuarios.ser"))) {
-            usuarios = (ArrayList<Usuario>) ois.readObject();
-        } catch (IOException e) {
-        } catch (ClassNotFoundException e) {
-        } catch (Exception a) {
+            usuarios = (LinkedListDobleCircular<Usuario>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return usuarios;
-
     }
     
     
-    //METODO POR VER CORRECCION
-    @Override
+    /* Genera un código que representa este objeto, 
+    para que se pueda buscar y comparar fácilmente en listas o conjuntos.
+     */
+    @Override  
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        return Objects.hash(nomUsuario, contraseña);
     }
-
+    
     
     //Metodo que compara dos objetos para ver si son iguales
     @Override
