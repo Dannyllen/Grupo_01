@@ -1,24 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package espol.grupo_01.Modelo;
 
-//imports para la clase
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author Grupo 1
- */
 public class LinkedListDobleCircular<E> implements Iterable<E> {
-    Node<E> primero;
-    Node<E> ultimo;
-    int n = 0;
+    public CNode<E> primero;
+    public CNode<E> ultimo;
+    public int n = 0;
 
-    
     //Constructor sin parametro de la clase
     public LinkedListDobleCircular() {    
         this.primero = null;
@@ -27,36 +17,23 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
 
     
     //Getter
-    public Node<E> getUltimo() {
+    public CNode<E> getUltimo() {
         return ultimo;
     }
     
-    
-    //Creamos clase interna
-    public class Node<E>{
-        E contenido;
-        Node<E> siguiente;
-        Node<E> anterior;
-        
-        //Constructor de la clase interna
-        public Node(E contenido) {
-            this.contenido = contenido;
-            this.siguiente = null;
-            this.anterior = null;
-        }
-    }
-    
-    
+    public CNode<E> getPrimero() {
+    return primero;
+}
+  
     //Implementamos isEmpty() para usarlo en los metodos, que me dice si la lista esta vacia dependiendo de n
     public boolean isEmpty() {
     return n == 0;
     }
     
-    
     //////Metodos implementados de Iterable  
     //Metodo que agrega un nuevo nodo al final de la lista
-    public boolean add(E e) {
-        Node<E> nuevoNodo = new Node<>(e);
+    public boolean add(E element){
+        CNode<E> nuevoNodo = new CNode<>(element);
         if (isEmpty()) {
             primero = nuevoNodo;
             ultimo = nuevoNodo;
@@ -73,7 +50,6 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         return true;
     }
     
-    
     //Metodo que permite insertar un elemento en una posicion especifica de la lista
     public void add(int index, E element) {
         if (index < 0 || index > n) {
@@ -82,12 +58,12 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         if (index == n) {
             add(element); //metodo implementado anteriormente
         } else {
-            Node<E> nuevoNodo = new Node<>(element);
-            Node<E> actual = primero;
+            CNode<E> nuevoNodo = new CNode<>(element);
+            CNode<E> actual = primero;
             for (int i = 0; i < index; i++) {
                 actual = actual.siguiente;
             }
-            Node<E> anterior = actual.anterior;
+            CNode<E> anterior = actual.anterior;
 
             nuevoNodo.anterior = anterior;
             nuevoNodo.siguiente = actual;
@@ -100,22 +76,18 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
             n++;
         }
     }
-    
-    
+
     //Metodo que nos devuelve el elemento de la lista dependiendo del indice
     public E get(int index) {
         if (index < 0 || index >= n) {
             throw new IndexOutOfBoundsException("Índice fuera de rango");
         }
-        Node<E> actual = primero;
+        CNode<E> actual = primero;
         for (int i = 0; i < index; i++) {
             actual = actual.siguiente;
         }
         return actual.contenido;
     }
-    
-    
-    //Metodo que me permite eliminar un elemento de la lista y ajusta los enlaces anterior y siguiente 
     public E remove(int index) {
         if (isEmpty()) {
             throw new IndexOutOfBoundsException("La lista está vacía");
@@ -123,13 +95,13 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         if (index < 0 || index >= n) {
             throw new IndexOutOfBoundsException("Índice fuera de rango");
         }
-        Node<E> actual = primero;
+        CNode<E> actual = primero;
         for (int i = 0; i < index; i++) {
             actual = actual.siguiente;
         }
         E eliminado = actual.contenido;
-        Node<E> anterior = actual.anterior;
-        Node<E> siguiente = actual.siguiente;
+        CNode<E> anterior = actual.anterior;
+        CNode<E> siguiente = actual.siguiente;
 
         if (n == 1) {
             primero = null;
@@ -146,45 +118,80 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         }
         n--;
         return eliminado;
+    }    
+    //Metodo que me permite eliminar un elemento de la lista y ajusta los enlaces anterior y siguiente 
+    public E remove(CNode<E> elemento) {
+        if (isEmpty()) {
+            throw new IllegalStateException("La lista está vacía");
+        }
+
+        if (n == 1 && primero == elemento) {
+            E eliminado = elemento.contenido;
+            primero = null;
+            ultimo = null;
+            n--;
+            return eliminado;
+        }
+
+        CNode<E> actual = primero;
+        boolean encontrado = false;
+
+        do {
+            if (actual == elemento) {
+                encontrado = true;
+                break;
+            }
+            actual = actual.siguiente;
+        } while (actual != primero);
+
+        if (!encontrado) {
+            throw new IllegalArgumentException("El nodo no pertenece a la lista.");
+        }
+
+        E eliminado = actual.contenido;
+        CNode<E> anterior = actual.anterior;
+        CNode<E> siguiente = actual.siguiente;
+
+        anterior.siguiente = siguiente;
+        siguiente.anterior = anterior;
+
+        if (actual == primero) {
+            primero = siguiente;
+        }
+        if (actual == ultimo) {
+            ultimo = anterior;
+        }
+
+        n--;
+        return eliminado;
     }
     
-    /*Elimina la primera ocurrencia del objeto dado y 
-    Ajusta los enlaces para mantener la estructura circular y devuelve true si se eliminó.
-    */
-    public boolean remove(Object o) {
+    public boolean removeContacto(E elemento) {
         if (isEmpty()) {
             return false;
         }
 
-        Node<E> actual = primero;
-        for (int i = 0; i < n; i++) {
-            if ((actual.contenido == null && o == null) || (actual.contenido != null && actual.contenido.equals(o))) {
-                if (n == 1) {
-                    primero = null;
-                    ultimo = null;
-                } else {
-                    actual.anterior.siguiente = actual.siguiente;
-                    actual.siguiente.anterior = actual.anterior;
-                    if (actual == primero) {
-                        primero = actual.siguiente;
-                    }
-                    if (actual == ultimo) {
-                        ultimo = actual.anterior;
-                    }
-                }
-                n--;
+        CNode<E> actual = primero;
+        int cont = 0;
+
+        do{
+            if (actual.contenido.equals(elemento)) {
+                remove(actual);
                 return true;
             }
             actual = actual.siguiente;
-        }
+            cont++;
+        } while (actual != primero && cont < n);
+
         return false;
     }
+
 
     
     //Metodo que agrega contenido, recibendo una lista de tipo observableList de JavaFX
     public void iteracionCircular(ObservableList<String> observableList) {
         if (!isEmpty()) {
-            Node<E> current = ultimo;
+            CNode<E> current = ultimo;
             do {
                 observableList.add(current.contenido.toString());
                 current = current.siguiente;
@@ -192,17 +199,15 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         }
     }    
     
-    
     //Metodo anterior pero sin parametros
     public void iteracionCircular2(){
-       Node<E> actual = this.ultimo;
+       CNode<E> actual = this.ultimo;
         for (int i = 0; i < this.size(); i++) {
             System.out.print(actual.contenido + " ");
             actual = actual.anterior;
         }
         System.out.println();        
     }
-    
     
     //Metodos para avanzar al siguiente y al anterior elemento
     public void moveToNext() {
@@ -228,7 +233,7 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private Node<E> actual = primero;
+            private CNode<E> actual = primero;
             private int visitados = 0;
 
             @Override
@@ -250,6 +255,13 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         };
     }
     
+    public void clear() {
+        primero = null;
+        ultimo = null;
+        n = 0;
+    }
+
+    
     
     //formato para mostrar los valores, con el toString
     @Override
@@ -258,7 +270,7 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
             return "[]";
         }
         StringBuilder resultado = new StringBuilder("[");
-        Node<E> current = primero;
+        CNode<E> current = primero;
         for (int i = 0; i < n; i++) {
             resultado.append(current.contenido);
             if (i < n - 1) {
@@ -269,5 +281,4 @@ public class LinkedListDobleCircular<E> implements Iterable<E> {
         resultado.append("]");
         return resultado.toString();
     }
-
 }

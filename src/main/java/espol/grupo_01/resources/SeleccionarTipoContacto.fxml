@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0"
+            prefWidth="600.0" 
+            styleClass="mainFxmlClass" 
+            xmlns="http://javafx.com/javafx/23.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="espol.grupo_01.Controlador.SeleccionarContactoController">
+
+    <stylesheets>
+        <URL value="@TipoContacto.css" />
+    </stylesheets>
+
+    <VBox fx:id="botonContainer"
+          alignment="CENTER"
+          spacing="20"
+          prefWidth="300"
+          prefHeight="200"
+          AnchorPane.topAnchor="250.0"
+          AnchorPane.leftAnchor="150.0"
+          AnchorPane.rightAnchor="150.0">
+
+        <Button text="Agregar Persona" onAction = "#cambiarEscenaAgregarPersona" fx:id="btnPersona"/>
+        <Button text="Agregar Empresa" onAction = "#cambiarEscenaAgregarEmpresa" fx:id="btnEmpresa"/>
+
+    </VBox> 
+</AnchorPane>
+

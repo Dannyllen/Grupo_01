@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0"
+            prefWidth="600.0" 
+            styleClass="mainFxmlClass" 
+            xmlns="http://javafx.com/javafx/23.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="espol.grupo_01.Controlador.AgregarEmpresaController">
+    
+    <stylesheets>
+        <URL value="@agregarcontacto.css" />
+    </stylesheets>
+
+    <ScrollPane fitToHeight="true" 
+                fitToWidth="true" 
+                layoutX="-0.6666666666666666"
+                pannable="true"
+                prefHeight="700.0" 
+                prefWidth="599.0"
+                vbarPolicy="ALWAYS" 
+                AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="-1.0"
+                AnchorPane.rightAnchor="2.0"
+                AnchorPane.topAnchor="0.0">
+      <content>
+           <VBox alignment="TOP_CENTER" prefHeight="835.0" prefWidth="586.0" spacing="15" styleClass="container">
+               <Label styleClass="title" text="📇 Registro de Contacto - Empresa" />
+      
+               <TextField fx:id="nombre" promptText="Nombre de la Empresa" />
+               <TextField fx:id="razonSocial" promptText="Razon Social" />
+               <TextField fx:id="ruc" promptText="ruc" />
+      
+                <Label styleClass="section" text="🏠 Direcciones:" />
+               <HBox>
+                   <TextField fx:id="direccion" prefHeight="34.0" prefWidth="323.0" promptText="Dirección" />
+               <MenuButton fx:id="menuDireccion" mnemonicParsing="false" text="📍 Tipo">
+                 <items>
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏠 Personal" />
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏢 Laboral" />
+                     <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏖 Secundaria" />
+                 </items>
+               </MenuButton>
+                   <Button onAction="#agregarDireccion" text="Agregar" />
+               </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
+                     <content>
+                           <ListView fx:id="listaDirecciones" prefHeight="31.0" prefWidth="191.0" />
+                     </content>
+                  </ScrollPane>
+                      <Button onAction="#eliminarDireccion" text="🗑" />
+               </children>
+            </HBox>
+      
+               <Label styleClass="section" text="📧 Emails:" />
+               <HBox>
+                   <TextField fx:id="email" prefHeight="34.0" prefWidth="324.0" promptText="Email" />
+               <MenuButton fx:id="menuCorreo" mnemonicParsing="false" text="📧 Tipo ">
+                 <items>
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="👤 Personal" />
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="💼 Laboral" />
+                     <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="🎓 Institucional" />
+                 </items>
+               </MenuButton>
+                   <Button onAction="#agregarEmail" text="Agregar" />
+               </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane prefHeight="37.0" prefWidth="193.0">
+                     <content>
+                           <ListView fx:id="listaEmails" prefHeight="33.0" prefWidth="190.0" />
+                     </content>
+                  </ScrollPane>
+                      <Button onAction="#eliminarEmail" text="🗑" />
+               </children>
+            </HBox>
+      
+                <Label styleClass="section" text="📞 Números Telefónicos:" />
+               <HBox>
+                   <TextField fx:id="telefono" prefHeight="34.0" prefWidth="320.0" promptText="Número Telefónico" />
+               <MenuButton fx:id="menuTelefono" mnemonicParsing="false" text="☎ Tipo">
+                 <items>
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoTelefono" text="📱 Celular" />
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoTelefono" text="📞Trabajo " />
+                     <MenuItem mnemonicParsing="false" onAction = "#asignarTipoTelefono" text="🚨 Emergencia" />
+                 </items>
+               </MenuButton>
+                   <Button onAction="#agregarTelefono" text="Agregar" />
+               </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane prefHeight="37.0" prefWidth="196.0">
+                     <content>
+                           <ListView fx:id="listaTelefonos" prefHeight="33.0" prefWidth="192.0" />
+                     </content>
+                  </ScrollPane>
+                      <Button onAction="#eliminarTelefono" text="🗑" />
+               </children>
+            </HBox>
+      
+               <Label styleClass="section" text="🌐 Redes Sociales:" />
+               <HBox>
+                   <TextField fx:id="redSocial" prefHeight="34.0" prefWidth="317.0" promptText="Usuario o URL" />
+               <MenuButton fx:id="menuRedes" mnemonicParsing="false" text="🌐 Tipo:">
+                 <items>
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoRedes" text=" 📘 Facebook" />
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoRedes" text="💼 LinkedIn" />
+                     <MenuItem mnemonicParsing="false" onAction = "#asignarTipoRedes" text="📸 Instagram" />
+                 </items>
+               </MenuButton>
+                   <Button onAction="#agregarRedSocial" text="Agregar" />
+               </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane prefHeight="37.0" prefWidth="193.0">
+                     <content>
+                           <ListView fx:id="listaRedesSociales" prefHeight="33.0" prefWidth="189.0" />
+                     </content>
+                  </ScrollPane>
+                      <Button onAction="#eliminarRedSocial" text="🗑" />
+               </children>
+            </HBox>
+      
+               <Label styleClass="section" text="🖼 Fotos:" />
+               <HBox>
+                   <Button onAction="#seleccionarImagen" text="Seleccionar Imagen" />
+                   <Button onAction="#eliminarFoto" text="🗑" />
+               </HBox>
+               <ListView fx:id="listaFotos" VBox.vgrow="ALWAYS" />
+      
+                <Label styleClass="section" text="📅 Fechas de Interés:" />
+               <HBox>
+                   <TextField fx:id="fechaInteres" promptText="Ej. 2025-06-07" />
+               <MenuButton fx:id="menuFechas" mnemonicParsing="false" text="MenuButton">
+                 <items>
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="🎂 NacImiento" />
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="📆 Reunión" />
+                 </items>
+               </MenuButton>
+                   <Button onAction="#agregarFechaInteres" text="Agregar" />
+               </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane prefHeight="37.0" prefWidth="197.0">
+                     <content>
+                           <ListView fx:id="listaFechasInteres" prefHeight="32.0" prefWidth="194.0" />
+                     </content>
+                  </ScrollPane>
+                      <Button onAction="#eliminarFechaInteres" text="🗑" />
+               </children>
+            </HBox>
+               <HBox>
+                   <Button onAction="#guardarContacto" styleClass="save-button" text="💾 Guardar Contacto" />
+                   <Button onAction="#eliminarContacto" styleClass="delete-button" text="🗑 Eliminar Contacto" />
+               </HBox>
+           </VBox>
+      </content>
+    </ScrollPane>
+</AnchorPane>
