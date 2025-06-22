@@ -24,7 +24,19 @@ public class LinkedListSimpleCircular<T> implements Iterable<T>, Serializable{
         }
         tamaño++;
     }
-
+    public boolean contains(T dato) {
+    if (isEmpty()) return false;
+    Nodo<T> actual = cabeza;
+    do {
+        if (actual.getValor().equals(dato)) {
+            return true;
+        }
+        actual = actual.getSiguiente();
+    } while (actual != cabeza);
+    return false;
+    }
+    
+    
     public Nodo<T> getPrimero() {
         return cabeza;
     }

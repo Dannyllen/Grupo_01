@@ -10,4 +10,13 @@ public class Nodo<T> implements Serializable{
     public Nodo(T valor) {
         this.valor = valor;
     }
+
+    public Nodo<T> getSiguiente() {
+        return siguiente;
+    }
+
+    public T getValor() {
+        return valor;
+    }
+    
 }
