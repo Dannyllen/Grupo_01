@@ -9,20 +9,25 @@ public class ContactoEmpresa extends Contacto implements Serializable {
     private String razonSocial;
     private String ruc;
 
-    public ContactoEmpresa(String nombre, String razonSocial, String ruc,
+    public ContactoEmpresa(String nombre,String apellido, String razonSocial, String ruc,
                            LinkedListSimpleCircular<Dato> direcciones,
                            LinkedListSimpleCircular<Dato> emails,
                            LinkedListSimpleCircular<Dato> numTelefonicos,
                            LinkedListSimpleCircular<Dato> identRedesSociales,
                            LinkedListDobleCircular<String> rutasFotos,
                            LinkedListSimpleCircular<Dato> fechasInteres) {
-        super(nombre, direcciones, emails, numTelefonicos, identRedesSociales, rutasFotos, fechasInteres);
+        super(nombre, apellido, direcciones, emails, numTelefonicos, identRedesSociales, rutasFotos, fechasInteres);
         this.razonSocial = razonSocial;
         this.ruc = ruc;
     }
 
+ 
+
     @Override
+    
     public String getTipoDeContacto() { return "Empresa"; }
+    
+    public String apellido() { return apellido;}
 
     public String getRazonSocial() { return razonSocial; }
 
@@ -40,6 +45,10 @@ public class ContactoEmpresa extends Contacto implements Serializable {
     @Override
     public FXMLLoader editar(){
         return new FXMLLoader(getClass().getResource("/espol/grupo_01/resources/AgregarEmpresaController.fxml"));
+    }
+
+    Object getEmpresa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 
