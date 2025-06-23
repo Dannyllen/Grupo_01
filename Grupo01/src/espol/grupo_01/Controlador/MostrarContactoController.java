@@ -29,7 +29,7 @@ public class MostrarContactoController {
     private CNode<Contacto> nodoActual;
     @FXML protected MenuButton menuOrdenar;
     @FXML protected Button btnFiltrar;
-    @FXML private MenuItem ordenarNombre; // ← Falta esta línea
+    @FXML private MenuItem ordenarNombre;
     @FXML private MenuItem ordenarAtributo;
     @FXML private MenuItem ordenarTipo;
 
