@@ -6,14 +6,14 @@ public class ContactoPersona extends Contacto implements Serializable {
     private static final long serialVersionUID = 01L;
     private String apellido;
 
-    public ContactoPersona(String nombre, String apellido,
+    public ContactoPersona(String nombre, String apellido, String pais,
                            LinkedListSimpleCircular<Dato> direcciones,
                            LinkedListSimpleCircular<Dato> emails,
                            LinkedListSimpleCircular<Dato> numTelefonicos,
                            LinkedListSimpleCircular<Dato> identRedesSociales,
                            LinkedListDobleCircular<String> rutasFotos,
                            LinkedListSimpleCircular<Dato> fechasInteres) {
-        super(nombre, direcciones, emails, numTelefonicos, identRedesSociales, rutasFotos, fechasInteres);
+        super(nombre, pais,direcciones, emails, numTelefonicos, identRedesSociales, rutasFotos, fechasInteres);
         this.apellido = apellido;
     }
 

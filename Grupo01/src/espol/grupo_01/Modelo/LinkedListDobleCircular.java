@@ -280,4 +280,24 @@ public class LinkedListDobleCircular<E> implements Iterable<E>,Serializable {
         resultado.append("]");
         return resultado.toString();
     }
+    
+    public void set(int index, E element) {
+        if (index < 0 || index >= n) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+        CNode<E> actual = primero;
+        for (int i = 0; i < index; i++) {
+            actual = actual.siguiente;
+        }
+        actual.contenido = element;
+    }
+    
+    public void swap(int i, int j) {
+        E temp = get(i);
+        set(i, get(j));
+        set(j, temp);
+    }
+
+
+    
 }

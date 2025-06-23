@@ -16,6 +16,45 @@
     -fx-text-fill: #2c3e50;
     -fx-padding: 5 0 5 0;
 }
+/* Estilo general para MenuButton */
+.menu-button {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333;
+    -fx-padding: 6 12;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+/* Estilo cuando se pasa el mouse */
+.menu-button:hover {
+    -fx-background-color: #dbefff;
+}
+
+/* Estilo para cada ítem dentro del menú */
+.menu-item {
+    -fx-font-size: 13px;
+    -fx-padding: 5 10;
+}
+
+/* Estilo para el botón de filtrar */
+#btnFiltrar {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 6 12;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #388e3c;
+    -fx-cursor: hand;
+}
+
+/* Efecto hover para el botón */
+#btnFiltrar:hover {
+    -fx-background-color: #45a049;
+}
 
 .fotoContacto {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0, 0);

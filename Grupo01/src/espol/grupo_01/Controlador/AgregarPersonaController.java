@@ -26,6 +26,7 @@ public class AgregarPersonaController extends AgregarBaseController {
             persona = new ContactoPersona(
                 nombre.getText().trim(),
                 apellido.getText().trim(),
+                pais.getText().trim(),
                 convertirLista(listaDirecciones),
                 convertirLista(listaEmails),
                 convertirLista(listaTelefonos),
@@ -38,6 +39,7 @@ public class AgregarPersonaController extends AgregarBaseController {
             // Si ya existe, se actualizan sus atributos
             persona.setNombre(nombre.getText().trim());
             persona.setApellido(apellido.getText().trim());
+            persona.setPais(pais.getText().trim());
             persona.setDirecciones(convertirLista(listaDirecciones));
             persona.setEmails(convertirLista(listaEmails));
             persona.setNumTelefonicos(convertirLista(listaTelefonos));
@@ -73,7 +75,7 @@ public class AgregarPersonaController extends AgregarBaseController {
 
         nombre.setText(persona.getNombre());
         apellido.setText(persona.getApellido());
-
+        pais.setText(persona.getPais());
         listaDirecciones.getItems().clear();
         for (Dato d : persona.getDirecciones()) {
             listaDirecciones.getItems().add(d.toString());

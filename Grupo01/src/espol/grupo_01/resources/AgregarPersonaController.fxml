@@ -40,7 +40,7 @@
       
                <TextField fx:id="nombre" promptText="Nombre" />
                <TextField fx:id="apellido" promptText="Apellido" />
-      
+               <TextField fx:id="pais" promptText="País" />
                 <Label styleClass="section" text="🏠 Direcciones:" />
                <HBox>
                    <TextField fx:id="direccion" prefHeight="34.0" prefWidth="323.0" promptText="Dirección" />
@@ -78,9 +78,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="193.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaEmails" prefHeight="33.0" prefWidth="190.0" />
+                           <ListView fx:id="listaEmails" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarEmail" text="🗑" />
@@ -101,9 +101,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="196.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaTelefonos" prefHeight="33.0" prefWidth="192.0" />
+                           <ListView fx:id="listaTelefonos" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarTelefono" text="🗑" />
@@ -124,9 +124,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="193.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaRedesSociales" prefHeight="33.0" prefWidth="189.0" />
+                           <ListView fx:id="listaRedesSociales" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarRedSocial" text="🗑" />
@@ -143,7 +143,7 @@
                 <Label styleClass="section" text="📅 Fechas de Interés:" />
                <HBox>
                    <TextField fx:id="fechaInteres" promptText="Ej. 2025-06-07" />
-               <MenuButton fx:id="menuFechas" mnemonicParsing="false" text="MenuButton">
+               <MenuButton fx:id="menuFechas" mnemonicParsing="false" text="📅 Fechas">
                  <items>
                    <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="🎂 NacImiento" />
                    <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="📆 Reunión" />
@@ -153,9 +153,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="197.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaFechasInteres" prefHeight="32.0" prefWidth="194.0" />
+                           <ListView fx:id="listaFechasInteres" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarFechaInteres" text="🗑" />
