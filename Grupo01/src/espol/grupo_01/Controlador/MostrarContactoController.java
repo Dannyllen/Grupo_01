@@ -16,8 +16,10 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 
 public class MostrarContactoController {
 
@@ -32,6 +34,10 @@ public class MostrarContactoController {
     @FXML private MenuItem ordenarNombre;
     @FXML private MenuItem ordenarAtributo;
     @FXML private MenuItem ordenarTipo;
+    @FXML private TextField campoTextoNombre;
+    @FXML private ComboBox<String> comboTipoPersona;
+    @FXML private TextField campoPais;
+
 
     public void initialize() {
         contactosCirculares = ContactoManager.getContactos();
@@ -40,6 +46,8 @@ public class MostrarContactoController {
             nodoActual = contactosCirculares.getPrimero();
             mostrarContactoActual();
         }
+        
+        comboTipoPersona.getSelectionModel().selectFirst();
         // Define cómo se muestra cada contacto dentro del ListView
         listaContactos.setCellFactory(lv -> {
             ContactoCard cell = new ContactoCard();
@@ -92,10 +100,32 @@ public class MostrarContactoController {
         mostrarContactoActual();
     }
     
-    @FXML private void aplicarFiltro(){
-        
+    @FXML
+    private void aplicarFiltro() {
+        String textoBuscado = campoTextoNombre.getText();
+        String tipoSeleccionado = comboTipoPersona.getValue();
+        String pais = campoPais.getText();
+
+        if (tipoSeleccionado != null && tipoSeleccionado.equalsIgnoreCase("Todos")) {
+            tipoSeleccionado = null;
+        }
+
+        // Filtrar sobre la lista existente sin crear contactos nuevos
+        LinkedListDobleCircular<Contacto> filtrados = ContactoManager.filtrarContactos(
+            textoBuscado, tipoSeleccionado, pais
+        );
+
+        if (!filtrados.isEmpty()) {
+            contactosCirculares = filtrados;
+            nodoActual = filtrados.getPrimero();
+            mostrarContactoActual();
+        } else {
+            listaContactos.getItems().clear();
+            // Puedes mostrar mensaje "No se encontraron contactos" en la interfaz
+        }
     }
-    
+
+  
     private void mostrarContactoActual() {
         ObservableList<Contacto> items = listaContactos.getItems();
         if (items.isEmpty()) {

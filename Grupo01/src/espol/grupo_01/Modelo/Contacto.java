@@ -9,14 +9,16 @@ public abstract class Contacto implements Serializable {
     private static final long serialVersionUID = 01L;
 
     protected String nombre;
+    protected String pais;
     private LinkedListSimpleCircular<Dato> direcciones;
     private LinkedListSimpleCircular<Dato> emails;
     private LinkedListSimpleCircular<Dato> numTelefonicos;
     private LinkedListSimpleCircular<Dato> identRedesSociales;
     private LinkedListDobleCircular<String> rutasFotos; 
     private LinkedListSimpleCircular<Dato> fechasInteres;
+    private transient LinkedListDobleCircular<Image> imagenesCache = null;
 
-    public Contacto(String nombre, 
+    public Contacto(String nombre, String pais,
             LinkedListSimpleCircular<Dato>direcciones,
             LinkedListSimpleCircular<Dato> emails,
             LinkedListSimpleCircular<Dato> numTelefonicos,
@@ -30,6 +32,7 @@ public abstract class Contacto implements Serializable {
         this.identRedesSociales = identRedesSociales;
         this.rutasFotos = rutasFotos;
         this.fechasInteres = fechasInteres;
+        this.pais = pais;
     }
     
     public String getNombre() { return nombre; }
@@ -43,25 +46,37 @@ public abstract class Contacto implements Serializable {
     public LinkedListSimpleCircular<Dato> getIdentRedesSociales() { return identRedesSociales;}
 
     public LinkedListDobleCircular<Image> getFotos() {
-        LinkedListDobleCircular<Image> listaImagenes = new LinkedListDobleCircular<>();
+        if (imagenesCache != null) {
+            return imagenesCache;
+        }
+
+        imagenesCache = new LinkedListDobleCircular<>();
 
         for (String rutaRelativa : rutasFotos) {
             try {
                 File archivo = new File(rutaRelativa);
                 if (archivo.exists()) {
                     Image img = new Image(archivo.toURI().toString());
-                    listaImagenes.add(img);
+                    imagenesCache.add(img);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return listaImagenes;
+        return imagenesCache;
     }
 
     public LinkedListDobleCircular<String> getFotosRutas(){ return rutasFotos;}
     
     public LinkedListSimpleCircular<Dato> getFechasInteres() { return fechasInteres; }
+    
+    public String getPais(){
+        return pais;
+    }
+    
+    public void setPais(String pais){
+        this.pais = pais;
+    }
     
     public void setNombre(String nombre) { this.nombre = nombre; }
         

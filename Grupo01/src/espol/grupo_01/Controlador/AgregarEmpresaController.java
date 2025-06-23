@@ -12,8 +12,7 @@ public class AgregarEmpresaController extends AgregarBaseController {
     // Representa el contacto actual (nuevo o a editar)
     private ContactoEmpresa empresa;
 
-    @FXML private TextField razonSocial;
-    @FXML private TextField ruc;
+    @FXML private TextField pais;
 
     /*
      * Se ejecuta al guardar un contacto.
@@ -28,8 +27,7 @@ public class AgregarEmpresaController extends AgregarBaseController {
         if (empresa == null) {
             empresa = new ContactoEmpresa(
                 nombre.getText().trim(),
-                razonSocial.getText().trim(),
-                ruc.getText().trim(),
+                pais.getText().trim(),
                 convertirLista(listaDirecciones),
                 convertirLista(listaEmails),
                 convertirLista(listaTelefonos),
@@ -41,8 +39,7 @@ public class AgregarEmpresaController extends AgregarBaseController {
         } else {
             // Si se está editando un contacto existente
             empresa.setNombre(nombre.getText().trim());
-            empresa.setRazonSocial(razonSocial.getText().trim());
-            empresa.setRuc(ruc.getText().trim());
+            empresa.setPais(pais.getText().trim());
             empresa.setDirecciones(convertirLista(listaDirecciones));
             empresa.setEmails(convertirLista(listaEmails));
             empresa.setNumTelefonicos(convertirLista(listaTelefonos));
@@ -66,8 +63,8 @@ public class AgregarEmpresaController extends AgregarBaseController {
 
         // Carga los datos en los campos del formulario
         nombre.setText(empresa.getNombre());
-        razonSocial.setText(empresa.getRazonSocial());
-        ruc.setText(empresa.getRuc());
+        pais.setText(empresa.getPais());
+        pais.setText(empresa.getPais());
 
         // Carga listas de información (direcciones, emails, etc.)
         listaDirecciones.getItems().clear();
@@ -119,7 +116,7 @@ public class AgregarEmpresaController extends AgregarBaseController {
      * Si no lo están, se muestra una alerta
      */
     private boolean validarCamposObligatorios() {
-        if (nombre.getText().trim().isEmpty() || ruc.getText().trim().isEmpty()) {
+        if (nombre.getText().trim().isEmpty() || pais.getText().trim().isEmpty()) {
             mostrarAlerta("⚠️ Nombre y RUC son obligatorios.");
             return false;
         }

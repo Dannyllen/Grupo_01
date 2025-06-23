@@ -6,10 +6,10 @@ import espol.grupo_01.Modelo.Contacto;
 import espol.grupo_01.Modelo.Dato;
 import espol.grupo_01.Modelo.LinkedListDobleCircular;
 import espol.grupo_01.Modelo.LinkedListSimpleCircular;
-import espol.grupo_01.Modelo.Nodo;
-import javafx.scene.control.*;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -99,13 +99,14 @@ public class ContactoCard extends ListCell<Contacto> {
         contenedorDatos.getChildren().clear();
 
         contenedorDatos.getChildren().addAll(
+            crearTextoPlano("🌍 País", contacto.getPais()),
+            crearTextoPlano("👤 Tipo", contacto.getTipoDeContacto()),
             crearBloqueDato("📧 Emails", contacto.getEmails()),
             crearBloqueDato("📞 Teléfonos", contacto.getNumTelefonicos()),
             crearBloqueDato("📍 Direcciones", contacto.getDirecciones()),
             crearBloqueDato("🌐 Redes Sociales", contacto.getIdentRedesSociales()),
             crearBloqueDato("📅 Fechas de interés", contacto.getFechasInteres()),
-            crearTextoPlano("🖼 Fotos", contacto.getFotos().isEmpty() ? "Sin fotos" : contacto.getFotos().size() + " imagen(es)"),
-            crearTextoPlano("👤 Tipo", contacto.getTipoDeContacto())
+            crearTextoPlano("🖼 Fotos", contacto.getFotos().isEmpty() ? "Sin fotos" : contacto.getFotos().size() + " imagen(es)")
         );
     }
 
@@ -136,23 +137,6 @@ public class ContactoCard extends ListCell<Contacto> {
         btnNext.setOnAction(e -> valorLabel.setText(navegador.siguiente()));
 
         return bloque;
-    }
-
-    private class NavegadorDato {
-        private Nodo<Dato> nodoActual;
-
-        public NavegadorDato(LinkedListSimpleCircular<Dato> lista) {
-            this.nodoActual = lista.getPrimero();
-        }
-
-        public String siguiente() {
-            nodoActual = nodoActual.siguiente;
-            return nodoActual.valor.toString();
-        }
-
-        public String actual() {
-            return nodoActual.valor.toString();
-        }
     }
 
     private VBox crearTextoPlano(String titulo, String valor) {

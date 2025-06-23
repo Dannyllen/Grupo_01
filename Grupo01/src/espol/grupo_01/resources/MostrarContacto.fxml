@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import java.lang.String?>
 
 <AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="500.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.grupo_01.Controlador.MostrarContactoController">
     <stylesheets>
@@ -16,29 +20,47 @@
     </stylesheets>
 
     <VBox spacing="15" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-      <HBox prefHeight="49.0" prefWidth="460.0"  spacing="15" style="-fx-padding: 0 10 0 10;">
-         <children>
-              <Label prefHeight="45.0" prefWidth="103.0" styleClass="titulo" text="Contactos" />
-            <MenuButton fx:id = "menuOrdenar" mnemonicParsing="false" text="Ordenar  por:">
-              <items>
-                <MenuItem fx:id = "ordenarNombre" mnemonicParsing="false" text="Nombre" onAction = "#ordenarPorNombre"/>
-                <MenuItem fx:id = "ordenarAtributo" mnemonicParsing="false" text="Cantidad de Imágenes" onAction = "#ordenarPorCantidadFotos"/>
-                  <MenuItem fx:id = "ordenarTipo" mnemonicParsing="false" text="Tipo de contacto" onAction = "#ordenarPorTipoDeContacto" />
-              </items>
-            </MenuButton>
-            <Button fx:id = "btnFiltrar" mnemonicParsing="false" text="Filtrar"  onAction = "#aplicarFiltro" />
-         </children>
-      </HBox>
+        <children>
+            <HBox prefHeight="49.0" prefWidth="460.0" spacing="15" style="-fx-padding: 0 10 0 10;">
+                <children>
+                    <Label prefHeight="45.0" prefWidth="103.0" styleClass="titulo" text="Contactos" />
+                    <MenuButton fx:id="menuOrdenar" mnemonicParsing="false" text="Ordenar  por:">
+                        <items>
+                            <MenuItem fx:id="ordenarNombre" mnemonicParsing="false" text="Nombre" onAction="#ordenarPorNombre" />
+                            <MenuItem fx:id="ordenarAtributo" mnemonicParsing="false" text="Cantidad de Imágenes" onAction="#ordenarPorCantidadFotos" />
+                            <MenuItem fx:id="ordenarTipo" mnemonicParsing="false" text="Tipo de contacto" onAction="#ordenarPorTipoDeContacto" />
+                        </items>
+                    </MenuButton>
+                    <Button fx:id="btnFiltrar" mnemonicParsing="false" text="Filtrar" onAction="#aplicarFiltro" />
+                </children>
+            </HBox>
 
-        <ListView fx:id="listaContactos" VBox.vgrow="ALWAYS" />
+            <VBox spacing="10">
+                <children>
+                    <TextField fx:id="campoTextoNombre" promptText="Buscar por nombre" />
+                    <ComboBox fx:id="comboTipoPersona" promptText="Seleccionar tipo">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Persona" />
+                                <String fx:value="Empresa" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <TextField fx:id="campoPais" promptText="Buscar por  país" />
+                </children>
+            </VBox>
 
-        <HBox alignment="CENTER" spacing="10">
-            <Button onAction="#mostrarAnterior" text="⟵ Anterior" />
-            <Button onAction="#mostrarSiguiente" text="Siguiente ⟶" />
-        </HBox>
+            <ListView fx:id="listaContactos" VBox.vgrow="ALWAYS" />
 
-        <HBox alignment="CENTER_RIGHT">
-            <Button onAction="#irAAgregarContacto" text="Agregar Contacto" />
-        </HBox>
+            <HBox alignment="CENTER" spacing="10">
+                <Button onAction="#mostrarAnterior" text="⟵ Anterior" />
+                <Button onAction="#mostrarSiguiente" text="Siguiente ⟶" />
+            </HBox>
+
+            <HBox alignment="CENTER_RIGHT">
+                <Button onAction="#irAAgregarContacto" text="Agregar Contacto" />
+            </HBox>
+        </children>
     </VBox>
 </AnchorPane>
+

@@ -30,7 +30,7 @@ public abstract class AgregarBaseController {
     protected final LinkedListDobleCircular<String> imagenesSeleccionadas = new LinkedListDobleCircular<>();
 
     // Campos de texto y listas gráficas vinculadas al FXML para ingreso de datos del contacto
-    @FXML protected TextField nombre;
+    @FXML protected TextField nombre, pais;
     @FXML protected ListView<String> listaDirecciones, listaEmails, listaTelefonos;
     @FXML protected ListView<String> listaRedesSociales, listaFechasInteres, listaFotos;
     @FXML protected MenuButton menuDireccion, menuCorreo, menuRedes, menuFechas, menuTelefono;

@@ -39,17 +39,16 @@
                <Label styleClass="title" text="📇 Registro de Contacto - Empresa" />
       
                <TextField fx:id="nombre" promptText="Nombre de la Empresa" />
-               <TextField fx:id="razonSocial" promptText="Razon Social" />
-               <TextField fx:id="ruc" promptText="ruc" />
-      
+               <TextField fx:id="pais" promptText="País" />
+
                 <Label styleClass="section" text="🏠 Direcciones:" />
                <HBox>
                    <TextField fx:id="direccion" prefHeight="34.0" prefWidth="323.0" promptText="Dirección" />
                <MenuButton fx:id="menuDireccion" mnemonicParsing="false" text="📍 Tipo">
                  <items>
-                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏠 Personal" />
-                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏢 Laboral" />
-                     <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏖 Secundaria" />
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏠 Principal" />
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏢 Fiscal" />
+                     <MenuItem mnemonicParsing="false" onAction="#asignarTipoDireccion" text="🏖 Comercial" />
                  </items>
                </MenuButton>
                    <Button onAction="#agregarDireccion" text="Agregar" />
@@ -70,9 +69,9 @@
                    <TextField fx:id="email" prefHeight="34.0" prefWidth="324.0" promptText="Email" />
                <MenuButton fx:id="menuCorreo" mnemonicParsing="false" text="📧 Tipo ">
                  <items>
-                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="👤 Personal" />
-                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="💼 Laboral" />
-                     <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="🎓 Institucional" />
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="👤 Interno" />
+                   <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="💼 Externo" />
+                     <MenuItem mnemonicParsing="false" onAction="#asignarTipoCorreo" text="🎓 Corporativo" />
                  </items>
                </MenuButton>
                    <Button onAction="#agregarEmail" text="Agregar" />
@@ -94,7 +93,7 @@
                <MenuButton fx:id="menuTelefono" mnemonicParsing="false" text="☎ Tipo">
                  <items>
                    <MenuItem mnemonicParsing="false" onAction = "#asignarTipoTelefono" text="📱 Celular" />
-                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoTelefono" text="📞Trabajo " />
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoTelefono" text="📞Empresa " />
                      <MenuItem mnemonicParsing="false" onAction = "#asignarTipoTelefono" text="🚨 Emergencia" />
                  </items>
                </MenuButton>
@@ -144,9 +143,9 @@
                 <Label styleClass="section" text="📅 Fechas de Interés:" />
                <HBox>
                    <TextField fx:id="fechaInteres" promptText="Ej. 2025-06-07" />
-               <MenuButton fx:id="menuFechas" mnemonicParsing="false" text="MenuButton">
+               <MenuButton fx:id="menuFechas" mnemonicParsing="false" text="📅 Fechas">
                  <items>
-                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="🎂 NacImiento" />
+                   <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="🎂 Aniversario" />
                    <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="📆 Reunión" />
                  </items>
                </MenuButton>

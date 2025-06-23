@@ -103,62 +103,42 @@ public class ContactoManager {
     public static LinkedListDobleCircular<Contacto> filtrarContactos(
             String textoNombreApellido,
             String tipoPersona,
-            String tipoRedSocial
+            String pais
     ) {
         LinkedListDobleCircular<Contacto> filtrados = new LinkedListDobleCircular<>();
 
         for (int i = 0; i < contactos.size(); i++) {
             Contacto c = contactos.get(i);
 
-            // Filtrar nombre y apellido
+            // Filtrar por nombre
             boolean cumpleNombre = true;
             if (textoNombreApellido != null && !textoNombreApellido.isEmpty()) {
-                String completo = c.getNombre();
+                String completo = c.getNombre().toLowerCase();
                 cumpleNombre = completo.contains(textoNombreApellido.toLowerCase());
             }
 
-            // Filtrar tipo persona
+            // Filtrar por tipo de persona
             boolean cumpleTipo = true;
-            if (tipoPersona != null) {
+            if (tipoPersona != null && !tipoPersona.isEmpty()) {
                 if (tipoPersona.equalsIgnoreCase("persona")) {
                     cumpleTipo = c instanceof ContactoPersona;
                 } else if (tipoPersona.equalsIgnoreCase("empresa")) {
                     cumpleTipo = c instanceof ContactoEmpresa;
-                } else {
-                    cumpleTipo = true;
                 }
             }
 
-            // Filtrar red social
-            boolean cumpleRedSocial = true;
-            if (tipoRedSocial != null && !tipoRedSocial.isEmpty()) {
-                LinkedListSimpleCircular<Dato> redes = c.getIdentRedesSociales();
-                if (redes != null && redes.size() > 0) {
-                    cumpleRedSocial = false;
-                    for (int j = 0; j < redes.size(); j++) {
-                        Dato datoRed = redes.get(j);
-                        String redStr = datoRed.getValor(); // cambia getValor() según tu clase Dato
-                        if (redStr != null && redStr.toLowerCase().contains(tipoRedSocial.toLowerCase())) {
-                            cumpleRedSocial = true;
-                            break;
-                        }
-                    }
-                } else {
-                    cumpleRedSocial = false;
-                }
+            // Filtrar por país
+            boolean cumplePais = true;
+            if (pais != null && !pais.isEmpty()) {
+                String paisContacto = c.getPais();
+                cumplePais = paisContacto != null && paisContacto.toLowerCase().contains(pais.toLowerCase());
             }
 
-            // Si cumple todos los filtros
-            if (cumpleNombre&& cumpleTipo && cumpleRedSocial) {
+            if (cumpleNombre && cumpleTipo && cumplePais) {
                 filtrados.add(c);
             }
         }
 
         return filtrados;
     }
-
-
-
-
-
 }

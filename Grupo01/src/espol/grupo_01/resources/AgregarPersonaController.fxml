@@ -40,7 +40,7 @@
       
                <TextField fx:id="nombre" promptText="Nombre" />
                <TextField fx:id="apellido" promptText="Apellido" />
-      
+               <TextField fx:id="pais" promptText="País" />
                 <Label styleClass="section" text="🏠 Direcciones:" />
                <HBox>
                    <TextField fx:id="direccion" prefHeight="34.0" prefWidth="323.0" promptText="Dirección" />
@@ -143,7 +143,7 @@
                 <Label styleClass="section" text="📅 Fechas de Interés:" />
                <HBox>
                    <TextField fx:id="fechaInteres" promptText="Ej. 2025-06-07" />
-               <MenuButton fx:id="menuFechas" mnemonicParsing="false" text="MenuButton">
+               <MenuButton fx:id="menuFechas" mnemonicParsing="false" text="📅 Fechas">
                  <items>
                    <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="🎂 NacImiento" />
                    <MenuItem mnemonicParsing="false" onAction = "#asignarTipoFechas" text="📆 Reunión" />
