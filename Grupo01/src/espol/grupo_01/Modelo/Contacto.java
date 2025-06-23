@@ -16,6 +16,7 @@ public abstract class Contacto implements Serializable {
     private LinkedListSimpleCircular<Dato> identRedesSociales;
     private LinkedListDobleCircular<String> rutasFotos; 
     private LinkedListSimpleCircular<Dato> fechasInteres;
+    private LinkedListSimpleCircular<Contacto> contactosAsociados;
     private transient LinkedListDobleCircular<Image> imagenesCache = null;
 
     public Contacto(String nombre, String pais,
@@ -69,6 +70,29 @@ public abstract class Contacto implements Serializable {
     public LinkedListDobleCircular<String> getFotosRutas(){ return rutasFotos;}
     
     public LinkedListSimpleCircular<Dato> getFechasInteres() { return fechasInteres; }
+
+    //metodo que retorna la lista de contactos relacionados con el contacto actual
+    public LinkedListSimpleCircular<Contacto> getContactosAsociados() { return contactosAsociados; }
+    
+    
+    //metodo para asociar otro contacto al actual
+    public void agregarContactoAsociado(Contacto contacto) {
+        if (contacto != null && !this.contactosAsociados.contains(contacto)) {
+        contactosAsociados.add(contacto);
+        }
+    }
+    
+    //Metodo que imprime en consola los nombres asociados
+    public void mostrarContactosAsociados() {
+    if (contactosAsociados.isEmpty()) {
+        System.out.println("No hay contactos asociados para " + this.nombre);
+    } else {
+        System.out.println("Contactos asociados a " + this.nombre + ":");
+        for (Contacto c : contactosAsociados) {
+            System.out.println("- " + c.getNombre());
+        }
+    }
+}
     
     public String getPais(){
         return pais;
