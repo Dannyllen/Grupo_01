@@ -9,7 +9,6 @@ public abstract class Contacto implements Serializable {
     private static final long serialVersionUID = 01L;
 
     protected String nombre;
-    protected String apellido;
     private LinkedListSimpleCircular<Dato> direcciones;
     private LinkedListSimpleCircular<Dato> emails;
     private LinkedListSimpleCircular<Dato> numTelefonicos;
@@ -17,7 +16,7 @@ public abstract class Contacto implements Serializable {
     private LinkedListDobleCircular<String> rutasFotos; 
     private LinkedListSimpleCircular<Dato> fechasInteres;
 
-    public Contacto(String nombre,String apellido, 
+    public Contacto(String nombre, 
             LinkedListSimpleCircular<Dato>direcciones,
             LinkedListSimpleCircular<Dato> emails,
             LinkedListSimpleCircular<Dato> numTelefonicos,
@@ -25,7 +24,6 @@ public abstract class Contacto implements Serializable {
             LinkedListDobleCircular<String> rutasFotos,
             LinkedListSimpleCircular<Dato> fechasInteres){
         this.nombre = nombre;
-        this.apellido=apellido;
         this.direcciones = direcciones;
         this.emails = emails;
         this.numTelefonicos = numTelefonicos;
@@ -35,9 +33,7 @@ public abstract class Contacto implements Serializable {
     }
     
     public String getNombre() { return nombre; }
-    
-    public String getApellido() { return apellido;}
-    
+        
     public LinkedListSimpleCircular<Dato> getDirecciones() { return direcciones; }
     
     public LinkedListSimpleCircular<Dato> getEmails() { return emails; }
@@ -68,9 +64,7 @@ public abstract class Contacto implements Serializable {
     public LinkedListSimpleCircular<Dato> getFechasInteres() { return fechasInteres; }
     
     public void setNombre(String nombre) { this.nombre = nombre; }
-    
-    public void setApellido(String apellido) {this.apellido=apellido;}
-    
+        
     public void setDirecciones(LinkedListSimpleCircular<Dato> direcciones) { this.direcciones = direcciones;}
     
     public void setEmails(LinkedListSimpleCircular<Dato> emails) { this.emails = emails; }

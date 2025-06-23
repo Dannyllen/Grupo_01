@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ContactoPersona extends Contacto implements Serializable {
     private static final long serialVersionUID = 01L;
-    
+    private String apellido;
 
     public ContactoPersona(String nombre, String apellido,
                            LinkedListSimpleCircular<Dato> direcciones,
@@ -13,7 +13,7 @@ public class ContactoPersona extends Contacto implements Serializable {
                            LinkedListSimpleCircular<Dato> identRedesSociales,
                            LinkedListDobleCircular<String> rutasFotos,
                            LinkedListSimpleCircular<Dato> fechasInteres) {
-        super(nombre, apellido, direcciones, emails, numTelefonicos, identRedesSociales, rutasFotos, fechasInteres);
+        super(nombre, direcciones, emails, numTelefonicos, identRedesSociales, rutasFotos, fechasInteres);
         this.apellido = apellido;
     }
 

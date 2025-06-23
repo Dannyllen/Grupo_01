@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,9 +16,17 @@
     </stylesheets>
 
     <VBox spacing="15" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-      <HBox prefHeight="49.0" prefWidth="460.0">
+      <HBox prefHeight="49.0" prefWidth="460.0"  spacing="15" style="-fx-padding: 0 10 0 10;">
          <children>
               <Label prefHeight="45.0" prefWidth="103.0" styleClass="titulo" text="Contactos" />
+            <MenuButton fx:id = "menuOrdenar" mnemonicParsing="false" text="Ordenar  por:">
+              <items>
+                <MenuItem fx:id = "ordenarNombre" mnemonicParsing="false" text="Nombre" onAction = "#ordenarPorNombre"/>
+                <MenuItem fx:id = "ordenarAtributo" mnemonicParsing="false" text="Cantidad de Imágenes" onAction = "#ordenarPorCantidadFotos"/>
+                  <MenuItem fx:id = "ordenarTipo" mnemonicParsing="false" text="Tipo de contacto" onAction = "#ordenarPorTipoDeContacto" />
+              </items>
+            </MenuButton>
+            <Button fx:id = "btnFiltrar" mnemonicParsing="false" text="Filtrar"  onAction = "#aplicarFiltro" />
          </children>
       </HBox>
 

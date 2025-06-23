@@ -78,9 +78,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="193.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaEmails" prefHeight="33.0" prefWidth="190.0" />
+                           <ListView fx:id="listaEmails" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarEmail" text="🗑" />
@@ -101,9 +101,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="196.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaTelefonos" prefHeight="33.0" prefWidth="192.0" />
+                           <ListView fx:id="listaTelefonos" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarTelefono" text="🗑" />
@@ -124,9 +124,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="193.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaRedesSociales" prefHeight="33.0" prefWidth="189.0" />
+                           <ListView fx:id="listaRedesSociales" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarRedSocial" text="🗑" />
@@ -153,9 +153,9 @@
                </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="37.0" prefWidth="197.0">
+                  <ScrollPane prefHeight="37.0" prefWidth="195.0">
                      <content>
-                           <ListView fx:id="listaFechasInteres" prefHeight="32.0" prefWidth="194.0" />
+                           <ListView fx:id="listaFechasInteres" prefHeight="31.0" prefWidth="191.0" />
                      </content>
                   </ScrollPane>
                       <Button onAction="#eliminarFechaInteres" text="🗑" />

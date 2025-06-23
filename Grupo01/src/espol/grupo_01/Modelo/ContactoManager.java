@@ -55,14 +55,14 @@ public class ContactoManager {
         return contactos;
     }
 
-    public static void ordenarPorApellidoYNombre() {
+    public static void ordenarPorNombre() {
         int n = contactos.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - 1 - i; j++) {
                 Contacto c1 = contactos.get(j);
                 Contacto c2 = contactos.get(j + 1);
-                String clave1 = c1.getApellido().toLowerCase() + c1.getNombre().toLowerCase();
-                String clave2 = c2.getApellido().toLowerCase() + c2.getNombre().toLowerCase();
+                String clave1 =  c1.getNombre().toLowerCase();
+                String clave2 =  c2.getNombre().toLowerCase();
                 if (clave1.compareTo(clave2) > 0) {
                     contactos.swap(j, j + 1);
                 }
@@ -70,43 +70,19 @@ public class ContactoManager {
         }
     }
 
-    public static void ordenarPorCantidadAtributos() {
+    public static void ordenarPorCantidadDeFotos() {
         int n = contactos.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - 1 - i; j++) {
                 Contacto c1 = contactos.get(j);
                 Contacto c2 = contactos.get(j + 1);
-                int atributos1 = contarAtributos(c1);
-                int atributos2 = contarAtributos(c2);
+                int atributos1 = c1.getFotos().size();
+                int atributos2 = c2.getFotos().size();
                 if (atributos1 > atributos2) {
                     contactos.swap(j, j + 1);
                 }
             }
         }
-    }
-
-    private static int contarAtributos(Contacto c) {
-        int total = 0;
-        if (c.getNombre() != null && !c.getNombre().isEmpty()) {
-            total++;
-        }
-        if (c.getApellido() != null && !c.getApellido().isEmpty()) {
-            total++;
-        }
-        if (c.getDirecciones() != null && !c.getDirecciones().isEmpty()) {
-            total++;
-        }
-        if (c.getEmails() != null && !c.getEmails().isEmpty()) {
-            total++;
-        }
-        if (c.getNumTelefonicos() != null && !c.getNumTelefonicos().isEmpty()) {
-            total++;
-        }
-        if (c.getIdentRedesSociales() != null && !c.getIdentRedesSociales().isEmpty()) {
-            total++;
-        }
-
-        return total;
     }
 
     public static void ordenarPorTipoDeContacto() {
@@ -135,10 +111,10 @@ public class ContactoManager {
             Contacto c = contactos.get(i);
 
             // Filtrar nombre y apellido
-            boolean cumpleNombreApellido = true;
+            boolean cumpleNombre = true;
             if (textoNombreApellido != null && !textoNombreApellido.isEmpty()) {
-                String completo = (c.getNombre() + " " + c.getApellido()).toLowerCase();
-                cumpleNombreApellido = completo.contains(textoNombreApellido.toLowerCase());
+                String completo = c.getNombre();
+                cumpleNombre = completo.contains(textoNombreApellido.toLowerCase());
             }
 
             // Filtrar tipo persona
@@ -173,7 +149,7 @@ public class ContactoManager {
             }
 
             // Si cumple todos los filtros
-            if (cumpleNombreApellido && cumpleTipo && cumpleRedSocial) {
+            if (cumpleNombre&& cumpleTipo && cumpleRedSocial) {
                 filtrados.add(c);
             }
         }
